@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الأنوار للأجهزة الكهربائية | Alanwar Electronics</title>
-    <meta name="description" content="متجر الأنوار للأجهزة الكهربائية - عروض حصرية على الثلاجات، الغسالات، الشاشات، والتكييفات بأفضل الأسعار.">
-    <meta property="og:title" content="الأنوار للأجهزة الكهربائية">
-    <meta property="og:description" content="عروض وتخفيضات كبرى على الأجهزة المنزلية.">
+    <title>الأنوار مول | Alanwar Mall - عروض White Friday</title>
+    <meta name="description" content="منذ عام 1988 م، أكثر من 35 سنة خبرة في مجال الأجهزة الكهربائية. عروض الجمعة البيضاء من الأنوار مول - Alanwar Mall.">
+    <meta property="og:title" content="الأنوار مول - عروض White Friday">
+    <meta property="og:description" content="عروض الجمعة البيضاء والهدايا من بيكو بمناسبة حفلة 11/12.">
     
     <!-- خطوط جوجل: Cairo للعناوين، Tajawal للنصوص -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,14 +62,13 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Cairo', sans-serif;
             font-weight: 800;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         button, input, select, textarea { font-family: inherit; }
         
-        /* أيقونات SVG */
         svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
         /* التصميم الزجاجي */
@@ -86,6 +85,24 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 28px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .section-title::before, .section-title::after {
+            content: "";
+            height: 1px;
+            width: 50px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         /* ============================================================
@@ -176,30 +193,33 @@
         .menu-toggle { display: block; background: none; border: none; color: var(--white); cursor: pointer; }
 
         /* ============================================================
-           4. قسم البطل (Hero)
+           4. قسم البطل (Hero) والإعلانات
            ============================================================ */
         .hero {
-            padding: 80px 0;
+            padding: 60px 0 20px;
             text-align: center;
             position: relative;
         }
 
         .hero h1 {
-            font-size: clamp(32px, 5vw, 56px);
+            font-size: clamp(22px, 4vw, 36px);
             margin-bottom: 20px;
             color: var(--white);
+            line-height: 1.6;
         }
 
-        .hero h1 span {
+        .hero h1 span.highlight {
             color: var(--gold);
             text-shadow: 0 0 20px rgba(245, 165, 36, 0.5);
+            display: inline-block;
+            margin: 10px 0;
         }
 
         .hero p {
             font-size: clamp(16px, 2vw, 20px);
             color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 40px;
+            max-width: 800px;
+            margin: 0 auto 30px;
         }
 
         .hero-btns {
@@ -207,6 +227,38 @@
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        /* بانر هدايا بيكو */
+        .beko-banner {
+            background: linear-gradient(135deg, rgba(245, 165, 36, 0.15), rgba(95, 168, 154, 0.15));
+            border: 1px solid var(--gold);
+            border-radius: var(--radius-md);
+            padding: 25px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            box-shadow: 0 0 30px rgba(245, 165, 36, 0.15);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(245, 165, 36, 0.1); }
+            to { box-shadow: 0 0 40px rgba(245, 165, 36, 0.25); }
+        }
+
+        .beko-banner h3 {
+            color: var(--gold);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .beko-banner p {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
         }
 
         /* ============================================================
@@ -214,7 +266,7 @@
            ============================================================ */
         .controls {
             padding: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -277,7 +329,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-bottom: 80px;
+            margin-bottom: 40px;
         }
 
         .product-card {
@@ -285,6 +337,7 @@
             flex-direction: column;
             overflow: hidden;
             transition: var(--transition);
+            position: relative;
         }
 
         .product-card:hover {
@@ -331,7 +384,7 @@
             z-index: 2;
         }
         .badge-discount { background: var(--gold); color: var(--bg); }
-        .badge-new { background: var(--blue); color: var(--white); }
+        .badge-featured { background: #dc2626; color: white; top: 40px; } /* أعلى 10 */
 
         .product-info {
             padding: 15px;
@@ -374,50 +427,18 @@
         .product-card .btn { width: 100%; font-size: 14px; }
 
         /* ============================================================
-           7. لماذا نحن
-           ============================================================ */
-        .features {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-bottom: 80px;
-        }
-
-        .feature-card {
-            padding: 30px;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .feature-card:hover { border-color: var(--gold); }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(245, 165, 36, 0.1);
-            color: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-        }
-
-        .feature-icon svg { width: 30px; height: 30px; }
-        .feature-card h3 { margin-bottom: 10px; font-size: 18px; }
-        .feature-card p { color: var(--text-muted); font-size: 14px; }
-
-        /* ============================================================
-           8. الفوتر
+           7. الفوتر
            ============================================================ */
         footer {
             border-top: 1px solid var(--glass-border);
             padding: 40px 0 20px;
             text-align: center;
+            background: rgba(8, 20, 47, 0.5);
+            margin-top: 50px;
         }
 
         .footer-logo { height: 60px; margin-bottom: 20px; display: inline-block; }
-        .footer-text { color: var(--text-muted); margin-bottom: 20px; }
+        .footer-text { color: var(--text-muted); margin-bottom: 20px; line-height: 1.8; font-size: 15px; }
         .copyright { color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--glass-border); padding-top: 20px; }
 
         /* زر واتساب عائم */
@@ -441,7 +462,7 @@
         .float-wa svg { width: 32px; height: 32px; fill: currentColor; stroke: none; }
 
         /* ============================================================
-           9. لوحة التحكم (Admin Panel)
+           8. لوحة التحكم (Admin Panel)
            ============================================================ */
         .admin-modal {
             position: fixed;
@@ -517,21 +538,22 @@
         .color-picker-item input[type="color"] { width: 40px; height: 40px; border: none; border-radius: 8px; cursor: pointer; background: transparent; }
 
         /* ============================================================
-           10. التجاوب (Responsive)
+           9. التجاوب (Responsive)
            ============================================================ */
         @media (min-width: 640px) {
             .products-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .features { grid-template-columns: repeat(2, 1fr); }
             .controls { flex-direction: row; align-items: center; }
             .search-box { width: 300px; }
+            .beko-banner h3 { font-size: 26px; }
         }
 
         @media (min-width: 900px) {
             .nav-links { display: flex; }
             .menu-toggle { display: none; }
             .products-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
-            .features { grid-template-columns: repeat(4, 1fr); }
-            .hero { padding: 120px 0; }
+            .hero { padding: 80px 0 20px; }
+            .beko-banner h3 { font-size: 30px; }
+            .beko-banner p { font-size: 22px; }
         }
     </style>
 </head>
@@ -545,15 +567,15 @@
             <a href="#" class="logo">
                 <img id="header-logo" src="" alt="شعار الأنوار" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><text x=\'50\' y=\'70\' font-size=\'50\' text-anchor=\'middle\' fill=\'%23F5A524\'>⚡</text></svg>'">
                 <div>
-                    <h2 style="font-size: 20px; margin-bottom: -5px;" id="header-title">الأنوار</h2>
-                    <span style="font-size: 12px; color: var(--teal);" id="header-subtitle">للأجهزة الكهربائية</span>
+                    <h2 style="font-size: 20px; margin-bottom: -5px;" id="header-title">الأنوار مول</h2>
+                    <span style="font-size: 12px; color: var(--teal);" id="header-subtitle">Alanwar Mall</span>
                 </div>
             </a>
             
             <nav class="nav-links">
                 <a href="#hero">الرئيسية</a>
-                <a href="#products">المنتجات</a>
-                <a href="#features">لماذا نحن</a>
+                <a href="#featured-offers">أقوى العروض</a>
+                <a href="#products">كل المنتجات</a>
                 <a href="#contact">تواصل معنا</a>
             </nav>
 
@@ -574,19 +596,41 @@
          ============================================================ -->
     <section class="hero" id="hero">
         <div class="container">
-            <h1 id="hero-title">أهلاً بك في <span>الأنوار</span><br>للأجهزة الكهربائية</h1>
-            <p id="hero-desc">نوفر لك أفضل الأجهزة المنزلية من كبرى العلامات التجارية العالمية، بأسعار لا تقبل المنافسة وضمان حقيقي. تصفح منتجاتنا واستفسر مباشرة عبر واتساب.</p>
+            <h1 id="hero-title">
+                بسم الله الرحمن الرحيم<br>
+                بسم الله نبداء ال وايت فراي داي 😎<br>
+                <span class="highlight">#عروض الجمعه البيضه من الأنوار مول - Alanwar Mall</span><br>
+            </h1>
+            
             <div class="hero-btns">
-                <a href="#products" class="btn btn-gold">تصفح المنتجات</a>
+                <a href="#featured-offers" class="btn btn-gold">تصفح العروض</a>
                 <button class="btn btn-outline" onclick="openWA()">تواصل معنا الآن</button>
+            </div>
+
+            <!-- بانر هدايا بيكو -->
+            <div class="beko-banner">
+                <h3>🎁 هدايا White Friday من Beko 🎁</h3>
+                <p>اي حد هيشتري من بيكو فوق ال 40 الف يسأل عن الهديه 🎁🎁🎁بتعته يوم 11/12 🎁🎁🎁🎁🎁🎁</p>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         المنتجات والتحكم
+         قسم أقوى العروض (أعلى 10 منتجات خصماً)
+         ============================================================ -->
+    <section class="container" id="featured-offers">
+        <h2 class="section-title">🔥 أقوى العروض (أعلى 10 خصومات) 🔥</h2>
+        <div class="products-grid" id="featured-grid">
+            <!-- سيتم توليد أفضل 10 منتجات هنا ديناميكياً -->
+        </div>
+    </section>
+
+    <!-- ============================================================
+         كل المنتجات والتحكم
          ============================================================ -->
     <section class="container" id="products">
+        <h2 class="section-title">🛒 تصفح كل المنتجات</h2>
+        
         <div class="controls glass">
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="ابحث عن منتج... (ثلاجة، غسالة، شاشة)" oninput="filterProducts()">
@@ -598,35 +642,7 @@
         </div>
 
         <div class="products-grid" id="products-grid">
-            <!-- سيتم توليد المنتجات هنا ديناميكياً -->
-        </div>
-    </section>
-
-    <!-- ============================================================
-         لماذا نحن
-         ============================================================ -->
-    <section class="container" id="features">
-        <div class="features">
-            <div class="feature-card glass">
-                <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <h3>ضمان حقيقي</h3>
-                <p>جميع منتجاتنا أصلية ومضمونة من الوكلاء المعتمدين.</p>
-            </div>
-            <div class="feature-card glass">
-                <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-                <h3>توصيل سريع</h3>
-                <p>خدمة توصيل وتركيب مجانية داخل القاهرة والجيزة.</p>
-            </div>
-            <div class="feature-card glass">
-                <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-                <h3>دفع مرن</h3>
-                <p>تقسيط بدون فوائد حتى 24 شهراً مع البنوك الشريكة.</p>
-            </div>
-            <div class="feature-card glass">
-                <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                <h3>دعم بعد البيع</h3>
-                <p>فريق دعم متخصص لخدمتك والرد على استفساراتك.</p>
-            </div>
+            <!-- سيتم توليد كل المنتجات هنا ديناميكياً -->
         </div>
     </section>
 
@@ -635,14 +651,16 @@
          ============================================================ -->
     <footer id="contact">
         <div class="container">
-            <h2 id="footer-title" style="color: var(--gold);">الأنوار للأجهزة الكهربائية</h2>
-            <p class="footer-text" id="footer-desc">نحن هنا لخدمتك. للاستفسار عن أي منتج يرجى التواصل معنا عبر الواتساب أو الاتصال المباشر.</p>
-            <p style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">
-                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; vertical-align: middle; margin-left: 5px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <span id="footer-phone">011 44410062</span>
+            <h2 id="footer-title" style="color: var(--gold); margin-bottom: 15px;">الأنوار مول - Alanwar Mall</h2>
+            
+            <p class="footer-text" id="footer-desc">
+                منذ عام 1988 م<br>
+                اكثر من 35 سنه خبره في مجال الاجهزه الكهربائيه بفضل الله<br>
+                ذالك لاصحابها الحاج فوزي عبد الرحيم و الحاج علي عبد الرحيم
             </p>
+            
             <div class="copyright">
-                جميع الحقوق محفوظة &copy; <span id="year"></span> الأنوار.
+                جميع الحقوق محفوظة &copy; <span id="year"></span> الأنوار مول.
             </div>
         </div>
     </footer>
@@ -670,7 +688,7 @@
                     <input type="text" id="admin-wa" class="form-control" placeholder="مثال: 201144410062">
                 </div>
                 <div class="form-group">
-                    <label>رقم الهاتف للعرض</label>
+                    <label>رقم الهاتف للعرض (اختياري)</label>
                     <input type="text" id="admin-phone" class="form-control" placeholder="011 44410062">
                 </div>
             </div>
@@ -775,14 +793,13 @@
     <script>
         /* ============================================================
            إعدادات الموقع الأساسية (SITE_CONFIG)
-           قم بتعديل هذا الكائن لتغيير المحتوى الافتراضي للموقع
            ============================================================ */
         const SITE_CONFIG = {
             settings: {
                 whatsapp: "201144410062",
-                phoneDisplay: "011 44410062",
-                logoUrl: "", // يمكنك وضع رابط الشعار هنا
-                password: "admin123", // كلمة مرور لوحة التحكم
+                phoneDisplay: "",
+                logoUrl: "",
+                password: "admin123",
                 colors: {
                     bg: "#08142F",
                     gold: "#F5A524",
@@ -790,16 +807,13 @@
                 }
             },
             texts: {
-                headerTitle: "الأنوار",
-                headerSubtitle: "للأجهزة الكهربائية",
-                heroTitle: "أهلاً بك في <span>الأنوار</span><br>للأجهزة الكهربائية",
-                heroDesc: "نوفر لك أفضل الأجهزة المنزلية من كبرى العلامات التجارية العالمية، بأسعار لا تقبل المنافسة وضمان حقيقي. تصفح منتجاتنا واستفسر مباشرة عبر واتساب.",
-                footerTitle: "الأنوار للأجهزة الكهربائية",
-                footerDesc: "نحن هنا لخدمتك. للاستفسار عن أي منتج يرجى التواصل معنا عبر الواتساب أو الاتصال المباشر."
+                headerTitle: "الأنوار مول",
+                headerSubtitle: "Alanwar Mall",
+                footerTitle: "الأنوار مول - Alanwar Mall",
+                footerDesc: "منذ عام 1988 م<br>اكثر من 35 سنه خبره في مجال الاجهزه الكهربائيه بفضل الله<br>ذالك لاصحابها الحاج فوزي عبد الرحيم و الحاج علي عبد الرحيم"
             },
             categories: ["الكل", "ثلاجات", "غسالات", "شاشات", "تكييفات", "بوتاجازات", "أفران", "غسالات أطباق", "أجهزة مطبخ"],
             products: [
-                // تم دمج كافة المنتجات الحقيقية هنا
                 { id: "1", name: "شاشه 55 بوصه LG سمارت 4K نانو", category: "شاشات", price: 24500, oldPrice: 28000, image: "", hidden: false },
                 { id: "2", name: "شاشه 43 بلوتو سمارت ضد الكسر", category: "شاشات", price: 12500, oldPrice: 14600, image: "", hidden: false },
                 { id: "3", name: "شاشه 32 بوصه كاسيل عاديه", category: "شاشات", price: 5250, oldPrice: 6300, image: "", hidden: false },
@@ -890,7 +904,8 @@
         function init() {
             applySettings();
             renderCategories();
-            renderProducts();
+            renderFeaturedOffers(); // عرض أعلى 10 خصومات
+            renderProducts();       // عرض باقي المنتجات
             document.getElementById('year').textContent = new Date().getFullYear();
             checkAdminAuth();
         }
@@ -908,11 +923,8 @@
             // النصوص
             document.getElementById('header-title').textContent = t.headerTitle;
             document.getElementById('header-subtitle').textContent = t.headerSubtitle;
-            document.getElementById('hero-title').innerHTML = t.heroTitle;
-            document.getElementById('hero-desc').textContent = t.heroDesc;
             document.getElementById('footer-title').textContent = t.footerTitle;
-            document.getElementById('footer-desc').textContent = t.footerDesc;
-            document.getElementById('footer-phone').textContent = s.phoneDisplay;
+            document.getElementById('footer-desc').innerHTML = t.footerDesc;
 
             // الشعار
             const logoImg = document.getElementById('header-logo');
@@ -920,7 +932,6 @@
                 logoImg.src = s.logoUrl;
                 logoImg.style.display = 'block';
             } else {
-                // استخدام شعار SVG افتراضي في حال عدم وجود صورة
                 logoImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="%230D1E45"/><text x="50" y="70" font-size="50" text-anchor="middle" fill="%23F5A524">⚡</text></svg>';
                 logoImg.style.display = 'block';
             }
@@ -942,7 +953,61 @@
             renderProducts();
         }
 
-        // عرض المنتجات مع الفلترة
+        // [جديد] دالة عرض قسم العروض المميزة (أعلى 10 خصومات)
+        function renderFeaturedOffers() {
+            const grid = document.getElementById('featured-grid');
+            
+            // 1. تصفية المنتجات غير المخفية والتي لديها سعر قديم (خصم)
+            let validProducts = appData.products.filter(p => !p.hidden && p.oldPrice && p.oldPrice > p.price);
+            
+            // 2. حساب نسبة الخصم وترتيب المنتجات تنازلياً
+            validProducts.sort((a, b) => {
+                const discA = (a.oldPrice - a.price) / a.oldPrice;
+                const discB = (b.oldPrice - b.price) / b.oldPrice;
+                return discB - discA;
+            });
+
+            // 3. أخذ أول 10 منتجات فقط
+            const top10 = validProducts.slice(0, 10);
+
+            if (top10.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">لا توجد عروض خصم حالياً.</div>`;
+                return;
+            }
+
+            // 4. توليد البطاقات
+            grid.innerHTML = top10.map(p => {
+                const discount = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
+                
+                const imgHTML = p.image 
+                    ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` 
+                    : `<svg class="placeholder-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+
+                return `
+                    <div class="product-card glass" style="border-color: rgba(245, 165, 36, 0.4);">
+                        <div class="product-img">
+                            <span class="badge badge-featured">🔥 الأكثر طلباً</span>
+                            <span class="badge badge-discount" style="top:10px; right:10px;">خصم ${discount}%</span>
+                            ${imgHTML}
+                        </div>
+                        <div class="product-info">
+                            <span class="product-cat">${p.category}</span>
+                            <h3 class="product-title">${p.name}</h3>
+                            <div class="product-price">
+                                ${p.price.toLocaleString()} ج.م
+                                ${p.oldPrice ? `<span class="product-old-price">${p.oldPrice.toLocaleString()}</span>` : ''}
+                            </div>
+                            <button class="btn btn-wa" onclick="askAboutProduct('${p.name.replace(/'/g, "\\'")}', ${p.price})">
+                                <svg viewBox="0 0 24 24" style="fill:currentColor; stroke:none; width:18px; height:18px;"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.6-.8-2.7-1.5-3.7-3.3-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.6-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.3 1.4 3.5.2.2 2.4 3.7 5.9 5.1 2.2.9 3.1.9 4.2.8.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+                                اسأل عبر واتساب
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // عرض باقي المنتجات مع الفلترة
         function renderProducts() {
             const grid = document.getElementById('products-grid');
             let filtered = appData.products.filter(p => !p.hidden);
@@ -968,7 +1033,6 @@
                 const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
                 const badge = discount > 0 ? `<span class="badge badge-discount">خصم ${discount}%</span>` : '';
                 
-                // صورة افتراضية في حال عدم وجود رابط
                 const imgHTML = p.image 
                     ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` 
                     : `<svg class="placeholder-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
@@ -1010,7 +1074,7 @@
         }
 
         function openWA() {
-            window.open(getWaLink("السلام عليكم، أرغب في الاستفسار عن منتجات الأنوار للأجهزة الكهربائية."), '_blank');
+            window.open(getWaLink("السلام عليكم، أرغب في الاستفسار عن منتجات الأنوار مول - Alanwar Mall."), '_blank');
         }
 
         function askAboutProduct(name, price) {
@@ -1033,7 +1097,6 @@
             }
         }
 
-        // مراقبة تغير الـ Hash لفتح لوحة التحكم
         window.addEventListener('hashchange', checkAdminAuth);
 
         function openAdminPanel() {
@@ -1051,7 +1114,6 @@
         function loadAdminData() {
             const s = appData.settings;
             
-            // الإعدادات
             document.getElementById('admin-wa').value = s.whatsapp;
             document.getElementById('admin-phone').value = s.phoneDisplay;
             document.getElementById('admin-logo').value = s.logoUrl;
@@ -1059,7 +1121,6 @@
             document.getElementById('color-gold').value = s.colors.gold;
             document.getElementById('color-teal').value = s.colors.teal;
 
-            // قائمة المنتجات
             const list = document.getElementById('admin-products-list');
             list.innerHTML = appData.products.map(p => `
                 <div class="admin-product-item" style="${p.hidden ? 'opacity:0.5;' : ''}">
@@ -1128,11 +1189,9 @@
             }
 
             if (id) {
-                // تعديل
                 const p = appData.products.find(x => x.id === id);
                 Object.assign(p, { name, category, price, oldPrice, image, hidden });
             } else {
-                // إضافة
                 const newId = Date.now().toString();
                 appData.products.push({ id: newId, name, category, price, oldPrice, image, hidden });
             }
@@ -1140,6 +1199,7 @@
             saveToLocalStorage();
             loadAdminData();
             renderProducts();
+            renderFeaturedOffers(); // تحديث العروض المميزة فوراً
             document.getElementById('productFormContainer').style.display = 'none';
         }
 
@@ -1149,6 +1209,7 @@
                 saveToLocalStorage();
                 loadAdminData();
                 renderProducts();
+                renderFeaturedOffers(); // تحديث العروض المميزة فوراً
             }
         }
 
@@ -1156,9 +1217,6 @@
             localStorage.setItem('alanwar_data', JSON.stringify(appData));
         }
 
-        /* ============================================================
-           النسخ الاحتياطي (Export/Import)
-           ============================================================ */
         function exportData() {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
             const dlAnchorElem = document.createElement('a');
@@ -1180,6 +1238,7 @@
                         applySettings();
                         loadAdminData();
                         renderProducts();
+                        renderFeaturedOffers();
                         alert("تم استيراد البيانات بنجاح!");
                     } else {
                         alert("ملف غير صالح.");
@@ -1194,15 +1253,15 @@
         function resetData() {
             if (confirm("سيتم حذف جميع التعديلات واستعادة البيانات الافتراضية. هل أنت متأكد؟")) {
                 localStorage.removeItem('alanwar_data');
-                appData = JSON.parse(JSON.stringify(SITE_CONFIG)); // deep copy
+                appData = JSON.parse(JSON.stringify(SITE_CONFIG));
                 applySettings();
                 loadAdminData();
                 renderProducts();
+                renderFeaturedOffers();
                 alert("تم استعادة الإعدادات الافتراضية.");
             }
         }
 
-        // تشغيل السكريبت عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
