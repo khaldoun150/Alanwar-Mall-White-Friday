@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الأنوار للأجهزة الكهربائية</title>
+<style>
+  /* استيراد خط عربي احترافي */
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap');
+
+  /* الهوية الداكنة */
+  :root{
+    --primary:#00d2ff;
+    --primary-hover:#3a7bd5;
+    --bg-color:#0f172a; /* خلفية الموقع */
+    --card-bg:rgba(30, 41, 59, 0.4); /* خلفية البطاقة الزجاجية */
+    --card-border:rgba(255, 255, 255, 0.08);
+    --text-main:#f8fafc;
+    --text-muted:#94a3b8;
+    --accent:#fbbf24;
+    --danger:#ef4444;
+    --green:#25d366;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo', sans-serif}
+  
+  body{
+    background:var(--bg-color);
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(58, 123, 213, 0.15) 0px, transparent 50%);
+    background-attachment: fixed;
+    color:var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* إعلان انتهاء الاشتراك */
+  .expired-banner{background:var(--danger);color:#fff;text-align:center;padding:8px;font-size:.9rem;display:none}
+
+  /* الهيدر */
+  header{
+    background:rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+    padding:16px 20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
+  .header-inner{max-width:1200px;margin:auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:52px;width:52px;object-fit:contain;border-radius:50%;background:#fff;padding:4px}
+  .brand h1{font-size:1.4rem;color:#fff;text-shadow:0 0 10px rgba(0, 210, 255, 0.5)}
+  
+  /* زر الواتساب في الهيدر */
+  .header-wa-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--green);
+    color:#fff;
+    padding:10px 20px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1rem;
+    box-shadow:0 0 15px rgba(37, 211, 102, 0.4);
+    transition:.3s;
+    animation: pulse-wa 2s infinite;
+  }
+  .header-wa-btn:hover{
+    background:#1ebe5d;
+    transform:scale(1.05);
+    animation:none;
+    box-shadow:0 0 25px rgba(37, 211, 102, 0.8);
+  }
+  .header-wa-btn svg{width:24px;height:24px;fill:#fff}
+  
+  /* تأثير الوميض */
+  @keyframes pulse-wa {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+
+  /* عنوان الوايت فرايداي الاحترافي */
+  .friday-title {
+    text-align: center;
+    margin: 35px auto 15px;
+    padding: 0 20px;
+  }
+  .friday-title span {
+    color: #ffffff; /* لون أبيض ناصع */
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    display: inline-block;
+  }
+  
+  /* شريط الكاتيجوري */
+  .cats{max-width:1200px;margin:24px auto;padding:0 20px;display:flex;gap:12px;overflow-x:auto;scrollbar-width:none}
+  .cats::-webkit-scrollbar{display:none}
+  .cat-btn{
+    white-space:nowrap;
+    padding:8px 24px;
+    border-radius:30px;
+    border:1px solid var(--card-border);
+    background:rgba(255, 255, 255, 0.03);
+    color:var(--text-main);
+    cursor:pointer;
+    font-weight:600;
+    backdrop-filter: blur(5px);
+    transition:.3s;
+  }
+  .cat-btn.active, .cat-btn:hover{
+    background:var(--primary);
+    color:#000;
+    border-color:var(--primary);
+    box-shadow:0 0 15px rgba(0, 210, 255, 0.4);
+  }
+
+  /* شبكة المنتجات */
+  .grid{max-width:1200px;margin:auto;padding:0 20px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
+  
+  /* البطاقة الزجاجية */
+  .card{
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:.3s;
+    position:relative;
+  }
+  .card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(0, 210, 255, 0.1);
+    border-color:rgba(0, 210, 255, 0.3);
+  }
+  
+  .card .img-wrap{height:220px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+  .card img{max-height:100%;max-width:100%;object-fit:contain;transition:.4s;filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5))}
+  .card:hover img{transform:scale(1.08)}
+  
+  .card .body{padding:16px;display:flex;flex-direction:column;flex:1}
+  .card .name{font-size:1rem;font-weight:700;margin-bottom:8px;min-height:48px;color:#fff}
+  .card .desc{font-size:.85rem;color:var(--text-muted);margin-bottom:12px;flex:1;display: -webkit-box;-webkit-line-clamp:2;-webkit-box-orient: vertical;overflow: hidden;}
+  
+  .card .prices{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .price{color:var(--primary);font-weight:800;font-size:1.25rem}
+  .old-price{color:var(--text-muted);text-decoration:line-through;font-size:.9rem}
+  
+  .card .actions{display:flex;gap:8px}
+  .btn{flex:1;padding:12px;border:none;border-radius:12px;cursor:pointer;font-weight:700;font-size:.95rem;text-align:center;text-decoration:none;transition:.3s;display:flex;align-items:center;justify-content:center;gap:8px}
+  .btn-wa{background:var(--green);color:#fff;box-shadow:0 4px 15px rgba(37, 211, 102, 0.2)}
+  .btn-wa:hover{background:#1ebe5d;box-shadow:0 6px 20px rgba(37, 211, 102, 0.4);transform:translateY(-2px)}
+
+  /* الشارات */
+  .badge{position:absolute;top:12px;padding:6px 14px;border-radius:20px;font-size:.75rem;font-weight:800;color:#fff;z-index:2;backdrop-filter:blur(4px)}
+  .badge.best{background:rgba(251, 191, 36, 0.9);color:#000;right:12px;border:1px solid #fbbf24}
+  .badge.limited{background:rgba(239, 68, 68, 0.9);left:12px;border:1px solid #ef4444}
+
+  .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted);font-size:1.1rem}
+
+  /* زر واتساب عائم */
+  .float-wa{
+    position:fixed;bottom:24px;left:24px;width:60px;height:60px;border-radius:50%;
+    background:var(--green);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 25px rgba(37,211,102,.6);z-index:200;transition:.3s;
+  }
+  .float-wa:hover{transform:scale(1.1) rotate(5deg)}
+  .float-wa svg{width:34px;height:34px;fill:#fff}
+
+  /* الفوتر (هوية الشركة) */
+  footer{
+    background:rgba(15, 23, 42, 0.9);
+    border-top: 1px solid var(--card-border);
+    color:var(--text-muted);
+    padding:40px 20px 20px;
+    margin-top: 40px;
+  }
+  .footer-content{
+    max-width:1200px;margin:auto;
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:30px;
+  }
+  .footer-section h3{
+    color:var(--primary);margin-bottom:15px;font-size:1.2rem;position:relative;padding-bottom:10px;
+  }
+  .footer-section h3::after{
+    content:'';position:absolute;bottom:0;right:0;width:40px;height:2px;background:var(--primary);
+  }
+  .footer-section p{margin-bottom:10px;font-size:.95rem;line-height:1.8}
+  .footer-section strong{color:#fff}
+  .footer-bottom{
+    text-align:center;padding-top:20px;margin-top:30px;border-top:1px solid rgba(255,255,255,0.05);font-size:.85rem;
+  }
+
+  @media(max-width:520px){
+    .brand h1{font-size:1.1rem}
+    .header-wa-btn{font-size:0.9rem;padding:8px 16px}
+    .friday-title span{font-size:1.3rem}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;padding:0 12px 50px}
+    .card .img-wrap{height:160px}
+    .card .name{font-size:.9rem;min-height:40px}
+    .price{font-size:1.1rem}
+    .footer-content{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="expired-banner" id="expiredBanner">⚠️ انتهت صلاحية الاشتراك — الموقع في وضع العرض فقط</div>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img id="logo" src="https://scontent.fcai19-6.fna.fbcdn.net/v/t39.30808-6/480701376_602465659221342_178026540141584963_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeE029fLcHLZgvOyq5iHn3pA3zmGBZR4WL7fOYYFlHhYvq1b69UZvXOu8Xjx3mNz_k13NyisKzkpkv-vAE7lQHCG&_nc_ohc=Q_VooMZW5mgQ7kNvwHK78B0&_nc_oc=Adozge2Hl-GFeGtnYUYqHcS0LWD7aqTOpTuyznLxADUieTkIIjx1sbsLOj0muOlnlYQ&_nc_zt=23&_nc_ht=scontent.fcai19-6.fna&_nc_gid=56ZinRWXdW8QFPBo3mP_eQ&_nc_ss=7b2a8&oh=00_AQRkmXRPB1dhMrHCS2NbVIBe_tjGY8ZLQmGLoZWSCr8rOQ&oe=6B09F858" alt="logo">
+      <h1>الأنوار للأجهزة الكهربائية</h1>
+    </div>
+    
+    <!-- زر الواتساب في الهيدر مع الرسالة التلقائية -->
+    <a class="header-wa-btn" href="https://wa.me/201144410062?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%D9%8A%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%B9%D8%B1%D9%88%D8%B6%20%D8%A7%D9%84%D9%88%D8%A7%D9%8A%D8%AA%20%D9%81%D8%B1%D8%A7%D9%8A%20%D8%AF%D8%A7%D9%8A" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.2 3 1.3 3.2c.1.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2z"/></svg>
+      تواصل معنا
+    </a>
+  </div>
+</header>
+
+<!-- عنوان الوايت فرايداي -->
+<div class="friday-title">
+  <span>🔥 عروض الوايت فرايداي مستمرة حتى 30/11/2026 🔥</span>
+</div>
+
+<div class="cats" id="cats"></div>
+<div class="grid" id="grid"></div>
+
+<a class="float-wa" id="floatWa" href="https://wa.me/201144410062" target="_blank" rel="noopener" title="تواصل واتساب">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.2 3 1.3 3.2c.1.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2z"/></svg>
+</a>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>من نحن</h3>
+      <p><strong>منذ عام 1988 م</strong></p>
+      <p>أكثر من 35 سنة خبرة في مجال الأجهزة الكهربائية بفضل الله.</p>
+      <p>نفتخر بخدمة أهلنا في كل مكان ونقدم أفضل العروض والمنتجات الأصلية.</p>
+    </div>
+    <div class="footer-section">
+      <h3>أصحاب الشركة</h3>
+      <p>الحاج / <strong>فوزي عبد الرحيم</strong></p>
+      <p>الحاج / <strong>علي عبد الرحيم</strong></p>
+    </div>
+    <div class="footer-section">
+      <h3>تواصل معنا</h3>
+      <p>📍 <strong>العنوان:</strong> ادفو ، شارع 23 يوليو، خلف مسجد البيومي</p>
+      <p>📞 <strong>واتساب:</strong> 01144410062</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> الأنوار للأجهزة الكهربائية — جميع الحقوق محفوظة</p>
+  </div>
+</footer>
+
+<script>
+// البيانات المدمجة
+const DATA = {
+  "settings": {
+    "whatsapp": "201144410062",
+    "logoUrl": "https://scontent.fcai19-6.fna.fbcdn.net/v/t39.30808-6/480701376_602465659221342_178026540141584963_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeE029fLcHLZgvOyq5iHn3pA3zmGBZR4WL7fOYYFlHhYvq1b69UZvXOu8Xjx3mNz_k13NyisKzkpkv-vAE7lQHCG&_nc_ohc=Q_VooMZW5mgQ7kNvwHK78B0&_nc_oc=Adozge2Hl-GFeGtnYUYqHcS0LWD7aqTOpTuyznLxADUieTkIIjx1sbsLOj0muOlnlYQ&_nc_zt=23&_nc_ht=scontent.fcai19-6.fna&_nc_gid=56ZinRWXdW8QFPBo3mP_eQ&_nc_ss=7b2a8&oh=00_AQRkmXRPB1dhMrHCS2NbVIBe_tjGY8ZLQmGLoZWSCr8rOQ&oe=6B09F858",
+    "endDate": "2026-11-30T23:59"
+  },
+  "categories": ["الكل","شاشات","غسالات","غسالات أطباق","أجهزة مطبخ"],
+  "products": [
+    {
+      "id": "1", "name": "شاشة 55 بوصة LG نانو سمارت 4K", "category": "شاشات", "price": 22999, "oldPrice": 26600,
+      "image": "https://www.lg.com/content/dam/channel/wcms/1-channel/eg_ar/ms/lgcom/2026/tv-audio-video/tv/nano-4k-uhd/nu8e0b6la-nu840b6la-nu850b6la-1st/gallery-new/2010/55.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800",
+      "description": "شاشه LG نانو 55 بوصه سمارت 4K.", "hidden": false, "bestseller": true, "limited": false
+    },
+    {
+      "id": "5", "name": "شاشة 43 بوصة شاومي سمارت ريموت بحث صوتي", "category": "شاشات", "price": 11999, "oldPrice": 15500,
+      "image": "https://m.media-amazon.com/images/I/61xlJHopwEL._AC_SL1000_.jpg",
+      "description": "شاشه شاومي 43 بوصه سمارت و ريموت بحث صوتي.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "3", "name": "شاشة 32 بوصة كاسيل عادية", "category": "شاشات", "price": 4999, "oldPrice": 5700,
+      "image": "https://media.btech.com/catalogs/9/7/1/e/971ec74c3174fc67324c3f801470f12e720caa61_77830bec417d58d2e8e5412810165363c61c7203afbb8b65a84b3c8aec7d6afa.jpeg",
+      "description": "شاشه كاسيل 32 بوصه عادي.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "2", "name": "شاشة 43 بوصة بلوتو سمارت ضد الكسر بنظام تشغيل LG", "category": "شاشات", "price": 12800, "oldPrice": 14000,
+      "image": "https://media.btech.com/catalogs/b/a/a/a/baaa65a140a5ffd95b7b02162d7aa42e25318564_335f5081ae646f2e34e0ae32ff44e435a7f3f90bb41faf5060d0b3a176ced3bc.jpg",
+      "description": "شاشه 43 بوصه بلوتو ضد الكسر بنظام تشغيل LG ممتازه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "6", "name": "غسالة هاير 11 ك فوق أوتوماتيك انفرتر موفرة للطاقة", "category": "غسالات", "price": 15000, "oldPrice": 18500,
+      "image": "https://media.btech.com/catalogs/6/2/4/a/624ac3c137be40b351989ccb1707332543c875e7_hwt12_ad1_4_.png",
+      "description": "غساله هاير فوق اوتماتك 11 ك موفره للطاقه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "15", "name": "غسالة LG 25 ك فوق أوتوماتيك انفرتر باب هيدرولك ذكاء اصطناعي", "category": "غسالات", "price": 52500, "oldPrice": 58000,
+      "image": "https://www.lg.com/content/dam/channel/wcms/eg_ar/images/washing-machines/f0z6dyp24-/new-gallery/2010-1.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800",
+      "description": "غساله 25 ك ال جي انفرتر باب هيدرولك و كمان تشغيل بالذكاء الاصطناعي.", "hidden": false, "bestseller": true, "limited": false
+    },
+    {
+      "id": "75", "name": "غسالة LG 19 ك فوق أوتوماتيك انفرتر هيدرولك", "category": "غسالات", "price": 27999, "oldPrice": 34000,
+      "image": "https://www.lg.com/content/dam/channel/wcms/eg_ar/images/washing-machines/t19h3sdht2_abmpeec_efeg_eg_ar_c/gallery/large02.jpg?w=800",
+      "description": "غساله 19 ك LG فوق اوتماتك انفرتر و هيدرولك.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "76", "name": "غسالة هاير 10 ك فوق أوتوماتيك انفرتر", "category": "غسالات", "price": 13999, "oldPrice": 16500,
+      "image": "https://media.btech.com/catalogs/c/e/e/2/cee2e2d083c083aa80728cbcc4f4dcd78cfe60e8_ca02_jin.png",
+      "description": "غساله 10 ك هاير انفرتر فوق اوتماتك.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "77", "name": "غسالة هوفور 8 ك أوتوماتيك و 5 ك مجفف انفرتر ضمان العربي", "category": "غسالات", "price": 26999, "oldPrice": 32000,
+      "image": "https://www.elarabygroup.com/media/catalog/product/cache/17a6d5d86492a3ba885df6b5c0bd14b3/h/o/hoover-washing-machine-fully-automatic-8-kg-5-kg-dryer-inverter-black-h3dps485tambbela-front.jpg",
+      "description": "غسالة هوفور 8 ك اوتماتك و 5 ك مجفف انفرتر ضمان العربي ممتازه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "12", "name": "غسالة هاير 10 ك أوتوماتيك كامل انفرتر نظام 2026 حديث", "category": "غسالات", "price": 21000, "oldPrice": 25000,
+      "image": "https://wazen.eg/wp-content/uploads/2026/07/%D9%8A-2026-08-01T191226.534.jpg",
+      "description": "غسالة هاير 10 ك اوتماتك كامل انفرتر و نظام 2026 حديث.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "17", "name": "غسالة بوش 8 ك أوتوماتيك كامل انفرتر مستورد تركي", "category": "غسالات", "price": 21000, "oldPrice": 24000,
+      "image": "https://media3.bsh-group.com/Product_Shots/1400x/20796894_WAN282X1EG_STP_def.webp",
+      "description": "غساله 8 ك بوش اوتماتك كامل انفرتر مستورد تركي.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "11", "name": "غسالة تورنيدو 7 ك أوتوماتيك كامل مستوردة تركي", "category": "غسالات", "price": 19500, "oldPrice": 21000,
+      "image": "https://www.elarabygroup.com/media/catalog/product/cache/5116950b38ac2fccc004635ffc15cfa3/t/o/tornado-washing-machine-fully-automatic-6-kg-silver-twv-fn68sloa.jpg",
+      "description": "غساله 7 ك تورنيدو اوتماتك كامل مستورده تركي.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "16", "name": "غسالة LG 15 ك أوتوماتيك كامل انفرتر إصدار حديث", "category": "غسالات", "price": 48999, "oldPrice": 55000,
+      "image": "https://www.lg.com/content/dam/channel/wcms/eg_ar/images/washing-machines/f0z6dyp24-/new-gallery/2010-1.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800",
+      "description": "غساله 15 ك LG اوتماتك كامل انفرتر اصدار حديث.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "78", "name": "غسالة LG 23 ك فوق أوتوماتيك حديثة انفرتر استنلس من الداخل", "category": "غسالات", "price": 47500, "oldPrice": 53000,
+      "image": "https://www.lg.com/content/dam/channel/wcms/eg_ar/images/washing-machines/f0z6dyp24-/new-gallery/2010-1.jpg/jcr:content/renditions/thum-1600x1062.jpeg?w=800",
+      "description": "غساله 23 ك LG فوق اوتماتك حديثه و انفرتر و استنلس من الداخل.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "79", "name": "غسالة فريش 13 ك فوق أوتوماتيك ديجيتال", "category": "غسالات", "price": 15500, "oldPrice": 16500,
+      "image": "https://media.btech.com/catalogs/7/3/e/a/73ea1e29a12e63e3a8f9b32dcb72f235b8ac4d9c_834fe15d9b5991c4048dec8ebc6c5421ca467477ef60b60585bdc7cc0321b846__3__copy.jpg",
+      "description": "غسالة فريش 13 ك فوق اوتماتك دجتال.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "50", "name": "غسالة أطباق بيكو 13 فرد 2 رف و 2 رشاش", "category": "غسالات أطباق", "price": 16500, "oldPrice": 19000,
+      "image": "https://www.raneen.com/media/catalog/product/7/6/7622205177-lo1-20220322-080815_4_4.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700",
+      "description": "غسالة اطباق بيكو 13 فرد 2 رف و 2 رشاش.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "55", "name": "غسالة أطباق زانوسي 13 فرد بولندي فتح تلقائي", "category": "غسالات أطباق", "price": 24999, "oldPrice": 29000,
+      "image": "https://media.btech.com/catalogs/2/7/3/2/273248baa5acec255978fb1eb0e4f41b7fbe2049_02c99e39192f5c6749037e777ce2455d67b73f1c771328397126f11134a1ac5c.jpeg",
+      "description": "غساله اطباق زانوسي 13 فرد بولندي 2 رف و 2 رشاش و خاصية الفتح التلقائي.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "52", "name": "غسالة أطباق بوش 13 فرد 3 رف و 3 رشاش فتح تلقائي", "category": "غسالات أطباق", "price": 35000, "oldPrice": 42000,
+      "image": "https://www.raneen.com/media/catalog/product/5/1/51q_poyezwl._ac__1_1.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700",
+      "description": "غسالة اطباق بوش 13 فرد 3 رف و 3 رشاش و فتح تلقائي و تحديث مع الزمن.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "56", "name": "غسالة أطباق بيكو 15 فرد 3 رف و 4 رشاش و 6+3 برنامج", "category": "غسالات أطباق", "price": 26500, "oldPrice": 30000,
+      "image": "https://www.awadserag.com/web/image/product.product/36642/image_1024/%5B7622105177%5D%20%D8%BA%D8%B3%D8%A7%D9%84%D9%87%20%D8%A7%D8%B7%D8%A8%D8%A7%D9%82%20%D8%A8%D9%8A%D9%83%D9%88%2015%20%D9%81%D8%B1%D8%AF%206%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC%20%D8%B3%D8%AA%D8%A7%D9%86%D9%84%D8%B3%20%D8%A7%D9%83%D9%88%D8%A7%20%D8%A7%D9%86%D8%AA%D9%86%D8%B3%20%D8%A7%D9%86%D9%81%D8%B1%D8%AA%D8%B1%20BDFN26520XQ?unique=6882b8b",
+      "description": "غسالة اطباق بيكو 15 فرد 3 رف و 4 رشاش و 6 برنامج اساسي و 3 إضافي.", "hidden": false, "bestseller": true, "limited": false
+    },
+    {
+      "id": "58", "name": "غسالة أطباق هيتاشي الياباني 15 فرد 3 رف و 5 رشاش", "category": "غسالات أطباق", "price": 42500, "oldPrice": 50000,
+      "image": "https://www.elarabygroup.com/media/catalog/product/cache/17a6d5d86492a3ba885df6b5c0bd14b3/h/i/hitachi-dishwasher-15-person-60-cm-inverter-led-display-6-programs-stainless-hnfp3630xb-front.jpg",
+      "description": "غسالة اطباق هيتاشي الياباني تجميع تركيا و 3 رف و 5 رشاش و فتح تلقائي و 9 برامج.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "54", "name": "غسالة أطباق بيكو 10 أفراد لون سيلفر 2 رف و 2 رشاش", "category": "غسالات أطباق", "price": 14500, "oldPrice": 18000,
+      "image": "https://media.btech.com/catalogs/7/7/7/0/7770bb82d35f01c7f284ddbca5e5b6929173ff14_daf94b6f829edaa9c5c635078ccb9544fa2b674fb728ecd73765987539eb8c87.jpeg",
+      "description": "غسالة اطباق بيكو 10 افراد لون سيلفر 2 رف و 2 رشاش.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "59", "name": "غسالة أطباق بوش 14 فرد سيريس 6 لون أسود 3 رف و 6 رشاش فتح تلقائي", "category": "غسالات أطباق", "price": 41999, "oldPrice": 50000,
+      "image": "https://media3.bsh-group.com/Product_Shots/1400x/25373934_SMS6EMI62V_STP_def.webp",
+      "description": "غسالة اطباق بوش 14 فرد سيريس 6 و 3 رف و 6 رشاش ( 3+3 ) و كمان فتح تلقائي و تحديث مع الزمن و لونها اسود غامق و كمان لوحة تحكم دفن جوي الغساله ع شان الميا و افضل غساله ب افضل سعر.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "69", "name": "مفرمة لحم بوش 1600 وات ألماني مع قطع الممبار والسجق", "category": "أجهزة مطبخ", "price": 4999, "oldPrice": 8000,
+      "image": "https://media3.bsh-group.com/Product_Shots/1400x/MCSA02130026_H6287_MFW3612A_1525337_def.webp",
+      "description": "مفرمة بوش 1600 وات و قطع الممبار و السجق و لحمة خشنه و ناعمه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "80", "name": "إير فراير بوش 6 لتر ديجيتال بقوائم طهي", "category": "أجهزة مطبخ", "price": 4999, "oldPrice": 8000,
+      "image": "https://media.btech.com/catalogs/4/c/4/f/4c4f70531373a9e428b870e2709cd763f1810136_25767316_MAF671B0_STP_def.jpg",
+      "description": "اير فراير بوش 6 لتر دجتال مع قوائم طهي و وضوع الكول لسحب البخار.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "61", "name": "هاند بلندر مينتا 1000 وات مع مضرب وكبة", "category": "أجهزة مطبخ", "price": 1899, "oldPrice": 2500,
+      "image": "https://media.btech.com/catalogs/9/3/5/b/935b714db271220bfcee7f2bb721fcc6c30ed031_hkadjli_hgjjsqgsdf1agg7t.jpg",
+      "description": "هاند بلندر مينتا 1000 وات مع قطعة المضرب و الكبيه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "81", "name": "هاند بلندر فريش 1000 وات فردي مع كبة", "category": "أجهزة مطبخ", "price": 1750, "oldPrice": 2200,
+      "image": "https://media.btech.com/catalogs/6/0/6/d/606da478d35438b18655ff2988fbb03088eca392_500017439.jpg",
+      "description": "هاند بلندر فريش 1000 وات فردي معاه الكبايه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "68", "name": "هاند بلندر بوش 800 وات مستورد مع كبة", "category": "أجهزة مطبخ", "price": 2999, "oldPrice": 5000,
+      "image": "https://media3.bsh-group.com/Product_Shots/21111438_MSM4W420_STP%20D_def.webp",
+      "description": "هاند بلندر بوش 800 وات مستورد و اداء جبار بسعر محصلش و معاه كبه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "82", "name": "إير فراير ستار ماكس 7.5 لتر ديجيتال بدرج مرايا", "category": "أجهزة مطبخ", "price": 3499, "oldPrice": 7000,
+      "image": "https://m.media-amazon.com/images/I/51EvB4q6x+L._AC_SL1500_.jpg",
+      "description": "اير فراير ستار ماكس 7،5 لتر و دجتال و فيها درج مرايه تحفه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "62", "name": "إير فراير بلاك اند ديكر 7 لتر صافي 6.2 أصلي بالضمان", "category": "أجهزة مطبخ", "price": 7500, "oldPrice": 9000,
+      "image": "https://media.btech.com/catalogs/9/a/1/1/9a11965eceb9b52085722c1456c534649885ff85_f92606c9e79a627bebb10b459ee384e9a52d580a39ce9348b7446513ffccadac.jpeg",
+      "description": "اير فراير بلاك اند ديكر 7 لتر صافي 6،2 الاصلي بالضمان.", "hidden": false, "bestseller": true, "limited": false
+    },
+    {
+      "id": "83", "name": "إير فراير تورنيدو 8 لتر 2 درج لتسوية منفصلة", "category": "أجهزة مطبخ", "price": 8299, "oldPrice": 10000,
+      "image": "https://www.elarabygroup.com/media/catalog/product/cache/17a6d5d86492a3ba885df6b5c0bd14b3/t/o/tornado-air-fryer-dual-cook-2500-watt-8-liter-digital-black-x-silver-thf-2508du-bs.jpg",
+      "description": "اير فراير تورنيدو 8 لتر و 2 درج كل درج 4 لتر لتسويه منفصله 100%.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "71", "name": "خلاط مولينكس 700 وات فرنساوي أصلي مع 2 مطحنة ودورق 2 لتر", "category": "أجهزة مطبخ", "price": 2999, "oldPrice": 4000,
+      "image": "https://cdn.supercommerce.io/zahran/uploads/Product%201-1745999501.jpg",
+      "description": "خلاط مولنكس 700 وات فرنساوي الأصلي و معاه 2 مطحنه و دورق 2 لتر.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "84", "name": "شفاط بلت ان استنلس ستار ماكس مستورد تركي أصلي بالضمان", "category": "أجهزة مطبخ", "price": 4500, "oldPrice": 6000,
+      "image": "https://prod-fastly.rayashop.com/media/catalog/product/cache/4e49ac3a70c0b98a165f3fa6633ffee1/n/6/n66lcv79uqoecrtrv7rx_qq5fqu7oyu8gtf6m.jpg",
+      "description": "شفاط بلت ان استنلس من ستار ماكس مستورد تركي اصلي بالضمان.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "85", "name": "إير فراير فريش 7 لتر ديجيتال 8 برامج طهي", "category": "أجهزة مطبخ", "price": 3999, "oldPrice": 5000,
+      "image": "https://media.btech.com/catalogs/6/2/9/8/629832a15066bdb79f1845e87bcefd549b505ab3_air_fryer_fresh_5.5_l_black_aff_1800b_11zon.jpeg",
+      "description": "اير فراير فريش 7 لتر دجتال بالكامل و ب 8 برامج طهي و ضمان من فريش.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "86", "name": "كبة مينتا دورق 2 لتر قوة 750 وات", "category": "أجهزة مطبخ", "price": 1499, "oldPrice": 1900,
+      "image": "https://www.raneen.com/media/catalog/product/4/5/455.png?optimize=high&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700&format=jpeg",
+      "description": "كبه مينتا دورق 2 لتر صافي 1،75 لتر و قوة 750 وات.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "87", "name": "خلاط مينتا 700 وات موتور فرنسي مع 2 مطحنة", "category": "أجهزة مطبخ", "price": 1750, "oldPrice": 2200,
+      "image": "https://media.btech.com/catalogs/b/6/5/b/b65b19ef91ec47db7f3e925a28f157a4764f0b04_71ilaaS1BML._AC_SL1500_.jpg",
+      "description": "خلاط مينتا 700 وات موتور فرنسي و معاه 2 مطحنه.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "88", "name": "كبة رافل 9 سلاح قوية", "category": "أجهزة مطبخ", "price": 1650, "oldPrice": 2200,
+      "image": "https://assets.wuiltstore.com/cmud2hf9w1xo701lchitz65qs_1280__Copy_.webp",
+      "description": "كبه رافل 9 سلاح قويه جدا و تحفه جدا.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "67", "name": "عجان حلويات رافال 5 لتر متوفر 3 ألوان", "category": "أجهزة مطبخ", "price": 4899, "oldPrice": 5500,
+      "image": "https://applianceegypt.com/wp-content/uploads/2025/07/%D8%B9%D8%AC%D8%A7%D9%86_%D9%A5_%D8%A7%D8%B3%D9%88%D8%AF.png",
+      "description": "عجان رافال 5 لتر متوفر منو 3 الوان ( احمر - ابيض - اسود ).", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "89", "name": "مفرمة لحمة رافل كاملة مع قطع بسكوت وممبار وبشر خضار", "category": "أجهزة مطبخ", "price": 5500, "oldPrice": 7000,
+      "image": "https://media.btech.com/catalogs/f/9/d/d/f9ddc9653aeb2be219e24ba7890c32692bca4193_WhatsApp_Image_2026_03_29_at_12.45.51_PM.jpeg",
+      "description": "مفرمة لحمه رافل و معاها قطع بتعمل ( بسكوت و كمان ممبار و لحمه خشنه و ناعمه و سجق و بتبشر الخضار ) كااااااامله.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "90", "name": "إير فراير رافل 7.5 لتر مع كل استخداماته", "category": "أجهزة مطبخ", "price": 5500, "oldPrice": 7000,
+      "image": "https://m.media-amazon.com/images/I/61+YQtxYkqL._AC_SL1500_.jpg",
+      "description": "اير فراير رافل 7،5 لتر و معاه كل استخداماتو.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "91", "name": "إير فراير فريش 20 لتر تعمل كفرن", "category": "أجهزة مطبخ", "price": 2999, "oldPrice": 4500,
+      "image": "https://be.fresh.com.eg/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/o/v/oven_air_fryer.jpg",
+      "description": "اير فراير فريش 20 لتر و بتشتغل فرن بردو.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "65", "name": "ميكرويف فريش 25 لتر منوال", "category": "أجهزة مطبخ", "price": 4499, "oldPrice": 5500,
+      "image": "https://wazen.eg/wp-content/uploads/2026/02/%D9%85%D9%8A%D9%83%D8%B1%D9%88%D9%88%D9%8A%D9%81_%D9%81%D8%B1%D9%8A%D8%B4.jpg",
+      "description": "ميكرويف فريش 25 لتر منوال.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "92", "name": "فرن رافل 45 لتر 3 مفاتيح تحكم", "category": "أجهزة مطبخ", "price": 2799, "oldPrice": 3500,
+      "image": "https://applianceegypt.com/wp-content/uploads/2025/07/%D9%81%D8%B1%D9%86_%D9%A1_yPntWfO.png",
+      "description": "فرن رافل 45 لتر و 3 مفاتيح للتحكم فيها.", "hidden": false, "bestseller": false, "limited": false
+    },
+    {
+      "id": "93", "name": "فرن ستار ماكس 71 لتر مستورد تركي كبير", "category": "أجهزة مطبخ", "price": 6750, "oldPrice": 9000,
+      "image": "https://www.raneen.com/media/catalog/product/w/e/wepa9-ggf.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=&width=&canvas=:",
+      "description": "فرن ستار ماكس 71 لتر مستورده تركي كبييييييره جدا.", "hidden": false, "bestseller": false, "limited": false
+    }
+  ]
+};
+
+let currentCat = "الكل";
+
+function init(){
+  if (DATA.settings.endDate && new Date(DATA.settings.endDate) < new Date()) {
+    document.getElementById('expiredBanner').style.display = 'block';
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const cats = document.getElementById('cats');
+  cats.innerHTML = '';
+  DATA.categories.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'cat-btn' + (c === 'الكل' ? ' active' : '');
+    b.textContent = c;
+    b.onclick = () => {
+      currentCat = c;
+      document.querySelectorAll('.cat-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      applyFilters();
+    };
+    cats.appendChild(b);
+  });
+
+  applyFilters();
+}
+
+function applyFilters(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+
+  const list = DATA.products.filter(p => {
+    if (p.hidden) return false;
+    if (currentCat !== 'الكل' && p.category !== currentCat) return false;
+    return true;
+  });
+
+  if (!list.length){
+    grid.innerHTML = '<div class="empty">لا توجد منتجات مطابقة.</div>';
+    return;
+  }
+
+  const wa = DATA.settings.whatsapp || '';
+  list.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      ${p.bestseller ? '<span class="badge best">🔥 الأكثر مبيعاً</span>' : ''}
+      ${p.limited ? '<span class="badge limited">⏳ كمية محدودة</span>' : ''}
+      <div class="img-wrap"><img loading="lazy" src="${p.image}" alt="${escapeHtml(p.name)}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect width=%22200%22 height=%22200%22 fill=%22%231e293b%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22>صورة غير متوفرة</text></svg>'"></div>
+      <div class="body">
+        <div class="name">${escapeHtml(p.name)}</div>
+        <div class="desc">${escapeHtml(p.description||'')}</div>
+        <div class="prices">
+          <span class="price">${formatPrice(p.price)}</span>
+          ${p.oldPrice ? `<span class="old-price">${formatPrice(p.oldPrice)}</span>` : ''}
+        </div>
+        <div class="actions">
+          <a class="btn btn-wa" target="_blank" rel="noopener"
+             href="https://wa.me/${wa}?text=${encodeURIComponent('أريد الاستفسار عن: ' + p.name)}">
+             <svg style="width:20px;height:20px;fill:currentColor" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.2 3 1.3 3.2c.1.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.8.7.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2z"/></svg>
+             اطلب واتساب
+          </a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function formatPrice(n){
+  if (n == null) return '';
+  return Number(n).toLocaleString('en-EG') + ' ج.م';
+}
+
+function escapeHtml(str){
+  return String(str||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+window.onload = init;
+</script>
+</body>
+</html>
